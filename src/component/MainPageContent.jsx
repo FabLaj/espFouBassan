@@ -9,73 +9,47 @@ const url = "https://localhost:7102/";
 const lesProf = [];
 const MainPage = () =>
 {
-  const pos = [];
-  const [lesLignes, setLesLignes] = useState([]);
-  const lignes = [];
-  const [loading, setLoading] = useState(true);
-  const [data, setData] = useState({});
+  const lesLignes = [];
+  const depths = [];
+  const [lignes, setLignes] = useState([]);
+  const [depth, setDepth] = useState([]);
+  const [reload, setReload] = useState();
+  // const [loading, setLoading] = useState(true);
   var {tag, date} = useParams();
-  console.log(date);
+  var data = "";
   useEffect(() =>  {
 
-    // async function callApi()
-    // {
-    //   var response = await getData(`${tag}?date=${date}`);
-    //   console.log(response);
-    //   setData(response);
-    // }
 
-    const fetchData = async () =>
+    async function callApi()
     {
-      console.log(`URL envoyé: ${tag}?date=${date}`);
-      const data = await getData(`${tag}?date=${date}`);
-      console.log(data);
-      data.positionTemps.map((pos) => {
+      data = await getData(`${tag}?date=${date}`);
+      data.positionTemps.map((pos) =>
+      {
         lesLignes.push([pos.latitude, pos.longitude]);
-    });
+      })
+      setLignes(lesLignes);
+      // console.log(data.profondeurTemps[0].profondeur);
+      console.log(data);
+      data.profondeurTemps.map((depth) =>
+      {
+        depths.push([depth.date, depth.profondeur]);
+      })
+      
+      setDepth(depths);
     }
-
-    fetchData();
-
-      // data.profondeurTemps.map((prof) =>
-      // {
-      //   lesProf.push([new Date(prof.date),prof.profondeur]);
-      // })
-
-      // callApi();
-      // console.log("les data");
-      // console.log(data);
-      // data.positionTemps.map((pos) => 
-      // {
-      //   lignes.push([pos.latitude, pos.longitude]);
-      // })
-  }, []);
+   
+    callApi();
+  }, [date]);
 
     return(
       <>
       <p>{lesLignes}</p>
         <h2 className="text-dark">Tableau de bord du {date} pour le tag {tag}</h2>
         <h4></h4>
-          <Leaflet lesLignes={lesLignes}/>
+          <Leaflet lesLignes={lignes}/>
         <br/>
-        <form>
-          <div className="row">
-            <div className="col-auto form-outline" id="timepicker-value">
-              <input type="text" className="form-control" data-mdb-timepicker-format24="true" />
-                <label className="form-label" htmlFor="form3">Select a time</label>
-            </div>
-            <div className="col">
-              <label htmlFor="slider" className="form-label">Moment</label>
-              <input type="range" className="form-range" id="slider" />
-            </div>
-            <div className="col-auto form-outline" id="timepicker-value">
-                <input type="text" className="form-control" data-mdb-timepicker-format24="true"/>
-                <label className="form-label" htmlFor="form3">Select a time</label>
-            </div>
-          </div>
-        </form>
         <br/>
-        <Graph lesProfondeurs={lesProf}/>
+        <Graph lesProfondeurs={depth}/>
         </>
     );
 }

@@ -3,21 +3,25 @@ import CanvasJSReact from "@canvasjs/react-charts";
 
 var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+const depths = [];
 
 export default class Graph extends Component{
+
     generateDataPoints(lesProfondeurs) {
+        // const data = [];
+        // data.push({x: new Date("2022-08-22T10:37:00"), y: 12});
+        // return data;
 		const data = [];
         lesProfondeurs.map((prof) => 
         {
-            data.push({x: prof[0], y: prof[1]});
+            data.push({x: new Date(prof[0]), y: prof[1]});
         })
+        console.log(data);
         return data;
 	}
 
     render()
     {
-        // console.log("Les prof recu graphique: ");
-        // console.log(this.props.lesProfondeurs)
         const options = {
             theme: "light2",
             animationEnabled: true,
@@ -25,10 +29,12 @@ export default class Graph extends Component{
             title:{
                 text: "Profondeur sur le temps"
             },
+            axisX:{
+                xValueType: "dateTime",
+                ValueFormatString: "hh:mm:fff",
+            },
             data: [{
                 type:"line",
-                xValueType: "dateTime",
-                xValueFormatString: "hh:mm:fff",
                 dataPoints: this.generateDataPoints(this.props.lesProfondeurs)
             }]
         }

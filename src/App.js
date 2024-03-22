@@ -17,8 +17,9 @@ const App = () => {
       <Suspense fallback={<div className='container'>Chargement...</div>}>
         <Routes>
           <Route path='/' index element={<HomePage/>}/>
-          <Route path=":tag" element={<SideBar/>}/>
-          <Route path='/:tag/:date' element={<MainPageContent/>}/>
+          <Route path=":tag" element={<SideBar/>}>
+            <Route path=':date' element={<MainPageContent/>}/>
+          </Route>
         </Routes>
       </Suspense>
   </>

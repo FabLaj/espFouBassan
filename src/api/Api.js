@@ -2,7 +2,12 @@ const url = "https://apifoubassan.azurewebsites.net/";
 
 export async function getData(params)
 {
+   let data = "";
    let response = await fetch(url + params);
-   let data = await response.json();
+   console.log(response);
+   if(response.status != 500)
+   {
+      data = await response.json();
+   }
    return data;
 }

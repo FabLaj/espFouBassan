@@ -13,12 +13,8 @@ const DateList = () =>
         {
             setDates(await getData("getAllDateByTag?tag=" + tag));
         }
-        if(tag != null)
-        {
-            console.log("Aucun tag pour le moment");
-            callApi();
-        }
-    }, []);
+        callApi();
+    }, [tag]);
 
     return (
         <ListGroup className="" as="ul" variant="flush">
