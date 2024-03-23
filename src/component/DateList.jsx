@@ -27,6 +27,7 @@ const DateList = () =>
                     );
                 })
             }
+            <ListGroup.Item id="all" key="all" className="m-1 text-primary bg-light" action variant="secondary" as={Link} to="all">Voir le trajet total</ListGroup.Item>
         </ListGroup>
     );
 };

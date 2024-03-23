@@ -8,6 +8,7 @@ import MainPageContent from './component/MainPageContent.jsx';
 import { Suspense } from 'react';
 import SideBar from './component/SideBar.jsx';
 import HomePage from './component/HomePage.jsx';
+import GrandTrajet from './component/GrandTrajet.jsx';
 
 const App = () => {
 
@@ -19,6 +20,7 @@ const App = () => {
           <Route path='/' index element={<HomePage/>}/>
           <Route path=":tag" element={<SideBar/>}>
             <Route path=':date' element={<MainPageContent/>}/>
+            <Route path='all' element={<GrandTrajet/>}/>
           </Route>
         </Routes>
       </Suspense>

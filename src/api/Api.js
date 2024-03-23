@@ -5,7 +5,11 @@ export async function getData(params)
    let data = "";
    let response = await fetch(url + params);
    console.log(response);
-   if(response.status != 500)
+   if(response.status >= 400)
+   {
+      console.log("Erreur: " + response.statusText);
+   }
+   else
    {
       data = await response.json();
    }
