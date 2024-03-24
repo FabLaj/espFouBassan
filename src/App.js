@@ -2,7 +2,7 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/style.css';
 import 'leaflet/dist/leaflet.css';
-import { Routes, Route, Switch } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import NavBar from './component/Navbar.jsx';
 import MainPageContent from './component/MainPageContent.jsx';
 import { Suspense } from 'react';

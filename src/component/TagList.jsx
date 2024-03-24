@@ -8,7 +8,7 @@ import { getData } from '../api/Api';
 const url = "https://localhost:7102/getAllTag";
 
 const TagList = () => {
-    const [tags, setTags] = useState([]);
+    const [tags, setTags] = useState(["En attente"]);
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() =>  {
         async function callApi()

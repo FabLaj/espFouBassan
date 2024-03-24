@@ -49,7 +49,11 @@ const MainPage = () =>
           <Leaflet lesLignes={lignes}/>
         <br/>
         <br/>
-        <Graph lesProfondeurs={depth}/>
+        {
+          depth.length == 0 ? <h3>Aucune données de profondeur trouvé</h3>
+          :
+          <Graph lesProfondeurs={depth}/>
+        }
         </>
     );
 }

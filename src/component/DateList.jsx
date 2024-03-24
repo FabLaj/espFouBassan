@@ -7,18 +7,25 @@ import { getData } from "../api/Api";
 const DateList = () =>
 {
     const [dates, setDates] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     const {tag} = useParams();
     useEffect(() =>  {
         async function callApi()
         {
+            setIsLoading(true);
             setDates(await getData("getAllDateByTag?tag=" + tag));
+            setIsLoading(false);
         }
         callApi();
     }, [tag]);
 
     return (
+        
         <ListGroup className="" as="ul" variant="flush">
             {
+                isLoading ?
+                <p>En attente de l'API</p>
+                :
                 dates.map((date) =>
                 {
                     date = date.split('T')[0];
