@@ -11,7 +11,7 @@ export async function getData(params)
    }
    else
    {
-      data = await response.json();
+      return data = await response.json();
    }
-   return data;
+   return null;
 }

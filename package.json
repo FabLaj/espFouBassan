@@ -1,7 +1,7 @@
 {
   "name": "my-app",
   "version": "0.1.0",
-  "homepage": "https://fablaj.github.io/espFouBassan",
+  "homepage": "https://fablaj.github.io/espFouBassan/",
   "private": true,
   "dependencies": {
     "@canvasjs/charts": "^3.7.40",

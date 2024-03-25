@@ -14,8 +14,12 @@ const TagList = () => {
         async function callApi()
         {
             setIsLoading(true);
-            setTags(await getData("getAllTag"));
-            setIsLoading(false);
+            var data = await getData("getAllTag");
+            if(data != null)
+            {
+                setTags(await getData("getAllTag"));
+                setIsLoading(false);
+            }
         }
         callApi();
     }, [])

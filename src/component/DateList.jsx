@@ -16,6 +16,7 @@ const DateList = () =>
             setDates(await getData("getAllDateByTag?tag=" + tag));
             setIsLoading(false);
         }
+        console.log(tag);
         callApi();
     }, [tag]);
 

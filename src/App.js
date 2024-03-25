@@ -15,15 +15,13 @@ const App = () => {
   return (
     <>
       <NavBar></NavBar>
-      <Suspense fallback={<div className='container'>Chargement...</div>}>
-        <Routes>
+        <Routes >
           <Route path='/' index element={<HomePage/>}/>
           <Route path=":tag" element={<SideBar/>}>
             <Route path=':date' element={<MainPageContent/>}/>
             <Route path='all' element={<GrandTrajet/>}/>
           </Route>
         </Routes>
-      </Suspense>
   </>
   );
 }
