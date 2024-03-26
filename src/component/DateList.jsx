@@ -13,7 +13,7 @@ const DateList = () =>
         async function callApi()
         {
             setIsLoading(true);
-            setDates(await getData("getAllDateByTag?tag=" + tag));
+            setDates(await getData("getAllDatesByTag?tag=" + tag));
             setIsLoading(false);
         }
         console.log(tag);
